@@ -488,6 +488,91 @@ section { padding: 120px 0; }
 .footer-bottom { text-align: center; padding-top: 28px; border-top: 1px solid var(--border); }
 .footer-bottom p { color: var(--text-muted); font-size: 12px; }
 
+/* ===== EXTRA ANIMATIONS ===== */
+.shine {
+    position: absolute; top: 0; bottom: 0; width: 45%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+    transform: translateX(-160%) skewX(-20deg);
+    pointer-events: none; z-index: 2;
+}
+.feature-card:hover .shine, .category-card:hover .shine, .review-card:hover .shine {
+    animation: shineSweep 1s var(--transition);
+}
+@keyframes shineSweep {
+    0% { transform: translateX(-160%) skewX(-20deg); }
+    100% { transform: translateX(320%) skewX(-20deg); }
+}
+
+.hero-star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle linear infinite;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 0.05; transform: scale(0.6); }
+    50% { opacity: 0.85; transform: scale(1.2); }
+}
+
+.floating-orb {
+    position: absolute; border-radius: 50%; pointer-events: none;
+    filter: blur(90px); opacity: 0.4;
+    animation: orbDrift ease-in-out infinite alternate;
+}
+@keyframes orbDrift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(46px, -64px) scale(1.2); }
+}
+
+.download-card::before {
+    content: ''; position: absolute; inset: -1px; border-radius: inherit;
+    background: conic-gradient(from 0deg, transparent 0 35%, rgba(124, 58, 237, 0.9) 50%, rgba(6, 182, 212, 0.9) 62%, transparent 72% 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    animation: borderSpin 7s linear infinite; z-index: 1; pointer-events: none;
+}
+@keyframes borderSpin { to { transform: rotate(360deg); } }
+
+.feature-card:hover .feature-icon i,
+.category-card:hover .category-icon-wrap i,
+.review-card:hover .reviewer-avatar {
+    animation: iconWiggle 0.55s ease-in-out;
+}
+@keyframes iconWiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-14deg) scale(1.1); }
+    75% { transform: rotate(12deg) scale(1.1); }
+}
+
+.section-header h2 { position: relative; }
+.section-header h2::after {
+    content: ''; position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%);
+    width: 56px; height: 3px; border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--cyan));
+    animation: headerLine 3s ease-in-out infinite;
+}
+@keyframes headerLine {
+    0%, 100% { width: 56px; opacity: 0.6; }
+    50% { width: 120px; opacity: 1; }
+}
+
+.download-icon i, .discord-icon i {
+    display: inline-block;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-6px) rotate(4deg); }
+}
+
+.stat-num {
+    background: linear-gradient(135deg, var(--text-primary), #cbd5e1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: statPulse 4s ease-in-out infinite;
+}
+@keyframes statPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.75; }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .features-grid { grid-template-columns: repeat(2, 1fr); }

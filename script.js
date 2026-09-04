@@ -159,4 +159,47 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = 'translateY(0) perspective(800px) rotateX(0) rotateY(0)';
         });
     });
+
+    // Shine sweep elements on cards
+    document.querySelectorAll('.feature-card, .category-card, .review-card').forEach(card => {
+        const shine = document.createElement('span');
+        shine.className = 'shine';
+        card.appendChild(shine);
+    });
+
+    const heroBg = document.querySelector('.hero-bg');
+
+    // Twinkle stars in hero
+    if (heroBg) {
+        for (let i = 0; i < 55; i++) {
+            const s = document.createElement('div');
+            s.classList.add('hero-star');
+            const size = Math.random() * 2.5 + 1;
+            s.style.width = size + 'px';
+            s.style.height = size + 'px';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.top = Math.random() * 100 + '%';
+            s.style.animationDuration = (Math.random() * 4 + 2) + 's';
+            s.style.animationDelay = (Math.random() * 4) + 's';
+            heroBg.appendChild(s);
+        }
+    }
+
+    // Floating gradient orbs
+    if (heroBg) {
+        const colors = ['#7c3aed', '#06b6d4', '#c084fc'];
+        for (let i = 0; i < 3; i++) {
+            const o = document.createElement('div');
+            o.classList.add('floating-orb');
+            const size = Math.random() * 220 + 180;
+            o.style.width = size + 'px';
+            o.style.height = size + 'px';
+            o.style.left = (Math.random() * 70) + '%';
+            o.style.top = (Math.random() * 60) + '%';
+            o.style.background = colors[i];
+            o.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            o.style.animationDelay = (Math.random() * 4) + 's';
+            heroBg.appendChild(o);
+        }
+    }
 });
